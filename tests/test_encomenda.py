@@ -47,3 +47,41 @@ def test_encomenda_tem_identificador_e_data_de_criacao():
 
     assert encomenda["id"]
     assert encomenda["criada_em"]
+
+from app import create_app
+from pathlib import Path
+import app.models.armazenamento as armazenamento
+
+
+def test_nao_permite_cadastrar_encomenda_sem_cliente(
+    tmp_path, monkeypatch
+):
+    arquivo_teste = tmp_path / "encomendas.json"
+
+    monkeypatch.setattr(
+        armazenamento,
+        "ARQUIVO_ENCOMENDAS",
+        arquivo_teste
+    )
+
+    app = create_app()
+    app.config["TESTING"] = True
+
+    cliente = app.test_client()
+
+    resposta = cliente.post(
+        "/nova-encomenda",
+        data={
+            "cliente": "",
+            "telefone": "",
+            "produtos": "Bolo de chocolate",
+            "data": "2026-10-25",
+            "horario": "14:00",
+            "tipo": "Retirada",
+            "observacoes": ""
+        }
+    )
+
+    assert resposta.status_code == 400
+    assert b"Informe o nome do cliente." in resposta.data
+    assert not arquivo_teste.exists()

@@ -31,19 +31,40 @@ def create_app():
             em_preparacao=em_preparacao,
             prontas_entrega=prontas_entrega
         )
-
+  
     @app.route("/nova-encomenda", methods=["GET", "POST"])
     def nova_encomenda():
         hoje = date.today().isoformat()
+        erro = None
 
         if request.method == "POST":
             cliente = request.form.get("cliente", "").strip()
             telefone = request.form.get("telefone", "").strip()
             produtos = request.form.get("produtos", "").strip()
-            data = request.form.get("data", "")
-            horario = request.form.get("horario", "")
-            tipo = request.form.get("tipo", "")
+            data = request.form.get("data", "").strip()
+            horario = request.form.get("horario", "").strip()
+            tipo = request.form.get("tipo", "").strip()
             observacoes = request.form.get("observacoes", "").strip()
+
+            if not cliente:
+                erro = "Informe o nome do cliente."
+            elif not produtos:
+                erro = "Informe os produtos encomendados."
+            elif not data:
+                erro = "Informe a data da encomenda."
+            elif data < hoje:
+                erro = "A data da encomenda não pode ser anterior a hoje."
+            elif not horario:
+                erro = "Informe o horário."
+            elif tipo not in ["Retirada", "Entrega"]:
+                erro = "Selecione uma forma de recebimento válida."
+
+            if erro:
+                return render_template(
+                    "nova_encomenda.html",
+                    hoje=hoje,
+                    erro=erro
+                ), 400
 
             encomenda = criar_encomenda(
                 cliente,
@@ -57,12 +78,14 @@ def create_app():
 
             salvar_encomenda(encomenda)
 
-            return render_template( 
-                "index.html",
-                mensagem="Encomenda registrada com sucesso!")
-       
-        return render_template("nova_encomenda.html", hoje=hoje)
-    
+            return redirect("/")
+
+        return render_template(
+            "nova_encomenda.html",
+            hoje=hoje,
+            erro=erro
+        )
+
     @app.route("/atualizar-status/<id>", methods=["POST"])
     def atualizar_status(id):
         encomendas = carregar_encomendas()
