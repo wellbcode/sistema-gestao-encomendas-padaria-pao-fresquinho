@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Padaria Pão Fresquinho | Gestão de Encomendas</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="/" class="marca">
+            <span class="marca-icone">🥐</span>
+            <span>
+                <strong>Pão Fresquinho</strong>
+                <small>Gestão de Encomendas</small>
+            </span>
+        </a>
+
+        <nav class="navegacao">
+            <a href="/" class="ativo">Início</a>
+            <a href="#encomendas">Encomendas</a>
+            <a href="#resumo">Resumo</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% if mensagem %}
+            <div class="mensagem-sucesso" role="status">
+                ✓ {{ mensagem }}
+            </div>
+        {% endif %}
+
+        <section class="boas-vindas">
+            <div class="boas-vindas-texto">
+                <span class="etiqueta">PAINEL DE CONTROLE</span>
+
+                <h1>Bom dia! ☀️<br>
+                    Bem-vindo à <span>Pão Fresquinho.</span>
+                </h1>
+
+                <p>
+                    Organize suas encomendas, acompanhe cada pedido
+                    e mantenha tudo pronto para seus clientes.
+                </p>
+
+                <a href="#encomendas" class="botao-principal">
+                    <span>+</span> Acessar encomendas
+                </a>
+            </div>
+
+            <div class="ilustracao">
+                <div class="circulo-fundo"></div>
+                <span class="pao">🥖</span>
+                <span class="trigo">🌾</span>
+            </div>
+        </section>
+
+        <section class="secao-resumo" id="resumo">
+            <div class="titulo-secao">
+                <div>
+                    <span class="etiqueta">VISÃO GERAL</span>
+                    <h2>Resumo das encomendas</h2>
+                    <p>Acompanhe os pedidos da padaria em um só lugar.</p>
+                </div>
+            </div>
+
+            <div class="resumo-grid">
+                <article class="resumo-card">
+                    <div class="card-icone icone-creme">📋</div>
+                    <span>Total de encomendas</span>
+                    <strong>{{ total_encomendas }}</strong>
+                    <small>Pedidos cadastrados</small>
+                </article>
+
+                <article class="resumo-card">
+                    <div class="card-icone icone-amarelo">🥣</div>
+                    <span>Em preparação</span>
+                    <strong>{{ em_preparacao }}</strong>
+                    <small>Pedidos em andamento</small>
+                </article>
+
+                <article class="resumo-card">
+                    <div class="card-icone icone-verde">✓</div>
+                    <span>Prontas para entrega</span>
+                    <strong>{{ prontas_entrega }}</strong>
+                    <small>Aguardando retirada ou entrega</small>
+                </article>
+            </div>
+        </section>
+
+        <section class="secao-encomendas" id="encomendas">
+            <div>
+                <span class="etiqueta">ORGANIZAÇÃO</span>
+                <h2>Encomendas cadastradas</h2>
+                <p>
+                    Consulte os pedidos registrados e acompanhe as encomendas da padaria.
+                </p>
+
+                <a href="{{ url_for('nova_encomenda') }}" class="botao-principal">
+                    <span>+</span> Nova encomenda
+                </a>
+            </div>
+
+            <div class="icone-encomendas">🧺</div>
+
+            {% if encomendas %}
+                <div class="lista-encomendas">
+                    {% for encomenda in encomendas %}
+                        <article class="item-encomenda">
+                            <h3>{{ encomenda.cliente }}</h3>
+                            <p><strong>Produtos:</strong> {{ encomenda.produtos }}</p>
+                            <p><strong>Data:</strong> {{ encomenda.data }}</p>
+                            <p><strong>Horário:</strong> {{ encomenda.horario }}</p>
+                            <p><strong>Tipo:</strong> {{ encomenda.tipo }}</p>
+                            <p class="status-encomenda">
+                                <strong>Status:</strong>
+                                <span class="status-recebida">{{ encomenda.status }}</span>
+                            </p>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Nenhuma encomenda cadastrada até o momento.</p>
+            {% endif %}
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Padaria Pão Fresquinho</p>
+        <span>Feito com carinho, todos os dias. ♥</span>
+    </footer>
+
+</body>
+</html>

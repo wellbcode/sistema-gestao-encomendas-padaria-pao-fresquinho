@@ -1,0 +1,674 @@
+
+:root {
+    --marrom: #603b2a;
+    --marrom-escuro: #3f291f;
+    --dourado: #d89b45;
+    --creme: #fffaf2;
+    --fundo: #f7f4ee;
+    --texto: #332b26;
+    --texto-suave: #887d73;
+    --branco: #ffffff;
+    --borda: #eee5d9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fundo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* CABEÇALHO */
+
+.topbar {
+    min-height: 86px;
+    padding: 16px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.marca-icone {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: var(--creme);
+    border-radius: 14px;
+    font-size: 27px;
+}
+
+.marca strong,
+.marca small {
+    display: block;
+}
+
+.marca strong {
+    color: var(--marrom-escuro);
+    font-size: 19px;
+    letter-spacing: -0.4px;
+}
+
+.marca small {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navegacao a {
+    padding: 10px 16px;
+    color: #74685f;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 9px;
+    transition: 0.2s;
+}
+
+.navegacao a:hover,
+.navegacao a.ativo {
+    color: var(--marrom);
+    background: var(--creme);
+}
+
+/* CONTEÚDO */
+
+.container {
+    width: min(1120px, 86%);
+    margin: 38px auto 60px;
+}
+
+/* BOAS-VINDAS */
+
+.boas-vindas {
+    position: relative;
+    overflow: hidden;
+    min-height: 330px;
+    padding: 48px 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: linear-gradient(115deg, #fffaf2 0%, #f4e6d1 100%);
+    border: 1px solid #efe0ca;
+    border-radius: 24px;
+}
+
+.boas-vindas-texto {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+}
+
+.etiqueta {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #a56b2e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.boas-vindas h1 {
+    color: var(--marrom-escuro);
+    font-size: clamp(29px, 3.5vw, 43px);
+    line-height: 1.2;
+    letter-spacing: -1.3px;
+}
+
+.boas-vindas h1 span {
+    color: #b47735;
+}
+
+.boas-vindas p {
+    max-width: 510px;
+    margin: 18px 0 25px;
+    color: #78685b;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.botao-principal {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 20px;
+    color: var(--branco);
+    background: var(--marrom);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 5px 12px rgba(96, 59, 42, 0.13);
+    transition: 0.2s;
+}
+
+.botao-principal:hover {
+    background: var(--marrom-escuro);
+    transform: translateY(-2px);
+}
+
+.botao-principal span {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.ilustracao {
+    position: relative;
+    width: 240px;
+    height: 230px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+}
+
+.circulo-fundo {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+}
+
+.pao {
+    position: relative;
+    z-index: 1;
+    font-size: 115px;
+    filter: drop-shadow(0 12px 9px rgba(96, 59, 42, 0.12));
+    transform: rotate(-10deg);
+}
+
+.trigo {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    font-size: 45px;
+    transform: rotate(15deg);
+}
+
+/* RESUMO */
+
+.secao-resumo {
+    margin-top: 42px;
+}
+
+.titulo-secao {
+    margin-bottom: 22px;
+}
+
+.titulo-secao h2,
+.secao-encomendas h2 {
+    color: var(--marrom-escuro);
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+.titulo-secao p,
+.secao-encomendas p {
+    margin-top: 6px;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.resumo-card {
+    min-height: 190px;
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 17px;
+    box-shadow: 0 5px 18px rgba(66, 46, 31, 0.035);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.resumo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(66, 46, 31, 0.07);
+}
+
+.card-icone {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 17px;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.icone-creme {
+    background: #f8eee0;
+}
+
+.icone-amarelo {
+    background: #fff2d6;
+}
+
+.icone-verde {
+    background: #e6f2e5;
+    color: #397544;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.resumo-card > span {
+    color: #75695f;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.resumo-card strong {
+    margin-top: 3px;
+    color: var(--marrom-escuro);
+    font-size: 30px;
+    line-height: 1.4;
+}
+
+.resumo-card small {
+    margin-top: 2px;
+    color: #9b9086;
+    font-size: 12px;
+}
+
+/* ÁREA DE ENCOMENDAS */
+
+.secao-encomendas {
+    margin-top: 25px;
+    padding: 30px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 17px;
+}
+
+.secao-encomendas > div:first-child {
+    max-width: 690px;
+}
+
+.icone-encomendas {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: var(--creme);
+    border-radius: 20px;
+    font-size: 38px;
+}
+
+
+/* =========================================
+   LISTA DE ENCOMENDAS
+   ========================================= */
+
+.lista-encomendas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+.item-encomenda {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #eee5dc;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(70, 45, 20, 0.06);
+    overflow-wrap: anywhere;
+}
+
+.item-encomenda h3 {
+    margin: 0 0 16px;
+    color: #4b3022;
+    font-size: 18px;
+}
+
+.item-encomenda p {
+    margin: 10px 0;
+    color: #62564e;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.item-encomenda strong {
+    color: #39291f;
+}
+
+/* Status das encomendas */
+
+.status-encomenda {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.status-recebida {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background-color: #fff0d9;
+    color: #9a5800;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ========================================
+   FORMULÁRIO DE NOVA ENCOMENDA
+======================================== */
+
+.formulario-encomenda {
+    max-width: 850px;
+    margin: 32px auto 60px;
+    padding: 32px;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(63, 41, 31, 0.05);
+}
+
+.formulario-cabecalho {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.formulario-cabecalho h2 {
+    margin-bottom: 8px;
+    color: var(--marrom-escuro);
+}
+
+.formulario-cabecalho p {
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.campo label {
+    color: var(--marrom-escuro);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Campos do formulário */
+
+.campo input,
+.campo select,
+.campo textarea {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 15px;
+
+    border: 1px solid #e4d8c9;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+    color: var(--texto);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #a69a8e;
+    opacity: 1;
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+    border-color: #cbb69e;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    border-color: var(--dourado);
+    background-color: #fffdf9;
+    box-shadow: 0 0 0 3px rgba(216, 155, 69, 0.16);
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible {
+    outline: 2px solid transparent;
+}
+
+.campo select {
+    cursor: pointer;
+}
+
+.campo textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.campo input[type="date"],
+.campo input[type="time"] {
+    cursor: pointer;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.formulario-acoes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid var(--borda);
+}
+
+.botao-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+    color: var(--marrom);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.botao-secundario:hover {
+    background: var(--fundo);
+}
+
+.formulario-acoes .botao-principal {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .formulario-encomenda {
+        padding: 22px 18px;
+        margin-top: 22px;
+    }
+
+    .formulario-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .formulario-acoes {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .formulario-acoes .botao-principal,
+    .botao-secundario {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* TELAS MENORES */
+@media (max-width: 800px) {
+    .topbar {
+        padding: 16px 5%;
+        flex-wrap: wrap;
+    }
+
+    .navegacao {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .navegacao a {
+        padding: 9px 12px;
+        white-space: nowrap;
+    }
+
+    .container {
+        width: 90%;
+        margin-top: 25px;
+    }
+
+    .boas-vindas {
+        padding: 35px 30px;
+    }
+
+    .ilustracao {
+        width: 150px;
+        height: 170px;
+    }
+
+    .circulo-fundo {
+        width: 145px;
+        height: 145px;
+    }
+
+    .pao {
+        font-size: 80px;
+    }
+
+    .trigo {
+        font-size: 30px;
+    }
+
+    .resumo-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .resumo-card {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .boas-vindas {
+        padding: 30px 23px;
+    }
+
+    .boas-vindas h1 {
+        font-size: 30px;
+    }
+
+    .ilustracao {
+        display: none;
+    }
+
+    .titulo-secao h2,
+    .secao-encomendas h2 {
+        font-size: 21px;
+    }
+
+    .secao-encomendas {
+        padding: 25px 22px;
+    }
+
+    .icone-encomendas {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+}
+    
+/* RODAPÉ */
+
+footer {
+    min-height: 75px;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: var(--branco);
+    border-top: 1px solid var(--borda);
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+
+footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+}
+

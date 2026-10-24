@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Encomenda | Pão Fresquinho</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a href="/" class="marca">
+            <span class="marca-icone">🥐</span>
+            <span>
+                <strong>Pão Fresquinho</strong>
+                <small>Gestão de Encomendas</small>
+            </span>
+        </a>
+
+        <nav class="navegacao">
+            <a href="/">Início</a>
+            <a href="/#encomendas" class="ativo">Encomendas</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="secao-encomendas">
+            <div>
+                <span class="etiqueta">GESTÃO DE PEDIDOS</span>
+                <h2>Nova encomenda</h2>
+                <p>Preencha os dados abaixo para registrar um novo pedido.</p>
+            </div>
+            <div class="icone-encomendas">🧺</div>
+        </section>
+
+        <form class="formulario-encomenda" action="#" method="post">
+
+            <div class="formulario-cabecalho">
+                <h2>Dados da encomenda</h2>
+                <p>Os campos marcados com * são obrigatórios.</p>
+            </div>
+
+            <div class="campo">
+                <label for="cliente">Nome do cliente *</label>
+                <input type="text" id="cliente" name="cliente"
+                       placeholder="Digite o nome completo" required>
+            </div>
+
+            <div class="campo">
+                <label for="telefone">Telefone para contato</label>
+                <input type="tel" id="telefone" name="telefone"
+                       placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="campo">
+                <label for="produtos">Produtos encomendados *</label>
+                <textarea id="produtos" name="produtos" rows="4"
+                          placeholder="Ex.: 2 bolos de chocolate, 30 pães de queijo..."
+                          required></textarea>
+            </div>
+
+            <div class="formulario-grid">
+                <div class="campo">
+                    <label for="data">Data de retirada ou entrega *</label>
+                    <input type="date" id="data" name="data" min="{{ hoje }}" required>
+                </div>
+
+                <div class="campo">
+                    <label for="horario">Horário *</label>
+                    <input type="time" id="horario" name="horario" required>
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="tipo">Forma de recebimento *</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="Retirada">Retirada na padaria</option>
+                    <option value="Entrega">Entrega</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="observacoes">Observações</label>
+                <textarea id="observacoes" name="observacoes" rows="3"
+                          placeholder="Detalhes adicionais do pedido (opcional)"></textarea>
+            </div>
+
+            <div class="formulario-acoes">
+                <a href="/" class="botao-secundario">Cancelar</a>
+                <button type="submit" class="botao-principal">
+                    Registrar encomenda
+                </button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026 Padaria Pão Fresquinho</p>
+        <span>Feito com carinho, todos os dias. ♥</span>
+    </footer>
+
+</body>
+</html>
