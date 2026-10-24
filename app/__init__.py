@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from datetime import date
 
 from app.models.encomenda import criar_encomenda
@@ -62,5 +62,37 @@ def create_app():
                 mensagem="Encomenda registrada com sucesso!")
        
         return render_template("nova_encomenda.html", hoje=hoje)
+    
+    @app.route("/atualizar-status/<id>", methods=["POST"])
+    def atualizar_status(id):
+        encomendas = carregar_encomendas()
+
+        status_permitidos = [
+            "Recebida",
+            "Em preparação",
+            "Pronta para entrega",
+            "Entregue"
+        ]
+
+        novo_status = request.form.get("status", "")
+
+        if novo_status not in status_permitidos:
+            return "Status inválido", 400
+
+        for encomenda in encomendas:
+            if encomenda["id"] == id:
+                encomenda["status"] = novo_status
+                break
+        else:
+            return "Encomenda não encontrada", 404
+
+        from app.models.armazenamento import ARQUIVO_ENCOMENDAS
+        import json
+
+        with open(ARQUIVO_ENCOMENDAS, "w", encoding="utf-8") as arquivo:
+            json.dump(encomendas, arquivo, ensure_ascii=False, indent=4)
+
+        return redirect("/")
+
 
     return app

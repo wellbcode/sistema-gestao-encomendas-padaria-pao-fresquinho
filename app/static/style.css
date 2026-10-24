@@ -335,62 +335,103 @@ a {
     font-size: 38px;
 }
 
+/* RODAPÉ */
 
-/* =========================================
-   LISTA DE ENCOMENDAS
-   ========================================= */
-
-.lista-encomendas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 28px;
-}
-
-.item-encomenda {
-    padding: 22px;
-    background: #ffffff;
-    border: 1px solid #eee5dc;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(70, 45, 20, 0.06);
-    overflow-wrap: anywhere;
-}
-
-.item-encomenda h3 {
-    margin: 0 0 16px;
-    color: #4b3022;
-    font-size: 18px;
-}
-
-.item-encomenda p {
-    margin: 10px 0;
-    color: #62564e;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.item-encomenda strong {
-    color: #39291f;
-}
-
-/* Status das encomendas */
-
-.status-encomenda {
+footer {
+    min-height: 75px;
+    padding: 20px 7%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    gap: 15px;
+    background: var(--branco);
+    border-top: 1px solid var(--borda);
+    color: var(--texto-suave);
+    font-size: 12px;
 }
 
-.status-recebida {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 20px;
-    background-color: #fff0d9;
-    color: #9a5800;
-    font-size: 12px;
-    font-weight: 600;
+/* TELAS MENORES */
+
+@media (max-width: 800px) {
+    .topbar {
+        padding: 16px 5%;
+        flex-wrap: wrap;
+    }
+
+    .navegacao {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .navegacao a {
+        padding: 9px 12px;
+        white-space: nowrap;
+    }
+
+    .container {
+        width: 90%;
+        margin-top: 25px;
+    }
+
+    .boas-vindas {
+        padding: 35px 30px;
+    }
+
+    .ilustracao {
+        width: 150px;
+        height: 170px;
+    }
+
+    .circulo-fundo {
+        width: 145px;
+        height: 145px;
+    }
+
+    .pao {
+        font-size: 80px;
+    }
+
+    .trigo {
+        font-size: 30px;
+    }
+
+    .resumo-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .resumo-card {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .boas-vindas {
+        padding: 30px 23px;
+    }
+
+    .boas-vindas h1 {
+        font-size: 30px;
+    }
+
+    .ilustracao {
+        display: none;
+    }
+
+    .titulo-secao h2,
+    .secao-encomendas h2 {
+        font-size: 21px;
+    }
+
+    .secao-encomendas {
+        padding: 25px 22px;
+    }
+
+    .icone-encomendas {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
 }
 
 /* ========================================
@@ -567,108 +608,175 @@ a {
     }
 }
 
-/* TELAS MENORES */
-@media (max-width: 800px) {
-    .topbar {
-        padding: 16px 5%;
-        flex-wrap: wrap;
+/* MENSAGEM DE SUCESSO */
+
+.mensagem-sucesso {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    border: 1px solid #cfe5c7;
+    border-radius: 10px;
+    background: #f1f8ed;
+    color: #356b2c;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* LISTA E CARDS DE ENCOMENDAS */
+
+.lista-encomendas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 18px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+.item-encomenda {
+    min-width: 0;
+    padding: 22px;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(63, 41, 31, 0.04);
+}
+
+.item-encomenda h3 {
+    margin-bottom: 14px;
+    color: var(--marrom-escuro);
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+.item-encomenda p {
+    margin: 8px 0;
+    color: var(--texto-suave);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.item-encomenda p strong {
+    color: var(--texto);
+}
+
+.status-encomenda {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px !important;
+}
+
+.status-recebida {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #fff2d8;
+    color: #80551b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* FORMULÁRIO DE ATUALIZAÇÃO DO STATUS */
+
+.form-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--borda);
+}
+
+.form-status label {
+    width: 100%;
+    color: var(--marrom-escuro);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-status select {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #e4d8c9;
+    border-radius: 9px;
+    background: var(--branco);
+    color: var(--texto);
+    font: inherit;
+    font-size: 14px;
+}
+
+.form-status select:focus-visible {
+    outline: 3px solid rgba(216, 155, 69, 0.25);
+    outline-offset: 2px;
+    border-color: var(--dourado);
+}
+
+.form-status button {
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--marrom);
+    color: var(--branco);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, outline-color 0.2s ease;
+}
+
+.form-status button:hover {
+    background: var(--marrom-escuro);
+}
+
+.form-status button:focus-visible {
+    outline: 3px solid rgba(216, 155, 69, 0.35);
+    outline-offset: 2px;
+}
+
+/* AJUSTES RESPONSIVOS COMPLEMENTARES */
+
+@media (max-width: 600px) {
+    .formulario-encomenda {
+        padding: 22px 18px;
+        margin-top: 22px;
     }
 
-    .navegacao {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .navegacao a {
-        padding: 9px 12px;
-        white-space: nowrap;
-    }
-
-    .container {
-        width: 90%;
-        margin-top: 25px;
-    }
-
-    .boas-vindas {
-        padding: 35px 30px;
-    }
-
-    .ilustracao {
-        width: 150px;
-        height: 170px;
-    }
-
-    .circulo-fundo {
-        width: 145px;
-        height: 145px;
-    }
-
-    .pao {
-        font-size: 80px;
-    }
-
-    .trigo {
-        font-size: 30px;
-    }
-
-    .resumo-grid {
+    .formulario-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 0;
     }
 
-    .resumo-card {
-        min-height: auto;
+    .formulario-acoes {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .formulario-acoes .botao-principal,
+    .formulario-acoes .botao-secundario {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-status select,
+    .form-status button {
+        width: 100%;
+    }
+
+    .form-status select {
+        flex: auto;
     }
 }
 
 @media (max-width: 520px) {
-    .boas-vindas {
-        padding: 30px 23px;
-    }
-
-    .boas-vindas h1 {
-        font-size: 30px;
-    }
-
-    .ilustracao {
-        display: none;
-    }
-
-    .titulo-secao h2,
-    .secao-encomendas h2 {
-        font-size: 21px;
-    }
-
-    .secao-encomendas {
-        padding: 25px 22px;
-    }
-
-    .icone-encomendas {
-        width: 55px;
-        height: 55px;
-        font-size: 28px;
+    footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
     }
 }
-    
-/* RODAPÉ */
-
-footer {
-    min-height: 75px;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    background: var(--branco);
-    border-top: 1px solid var(--borda);
-    color: var(--texto-suave);
-    font-size: 12px;
-}
-
-
-footer {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 4px;
-}
-

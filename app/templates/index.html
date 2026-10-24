@@ -116,10 +116,25 @@
                             <p><strong>Data:</strong> {{ encomenda.data }}</p>
                             <p><strong>Horário:</strong> {{ encomenda.horario }}</p>
                             <p><strong>Tipo:</strong> {{ encomenda.tipo }}</p>
+                            
                             <p class="status-encomenda">
                                 <strong>Status:</strong>
                                 <span class="status-recebida">{{ encomenda.status }}</span>
                             </p>
+
+                            <form action="{{ url_for('atualizar_status', id=encomenda.id) }}" 
+                                method="post" class="form-status">
+                                <label for="status-{{ encomenda.id }}">Atualizar status:</label>
+
+                                <select name="status" id="status-{{ encomenda.id }}" required>
+                                    <option value="Recebida" {% if encomenda.status == "Recebida" %}selected{% endif %}>Recebida</option>
+                                    <option value="Em preparação" {% if encomenda.status == "Em preparação" %}selected{% endif %}>Em preparação</option>
+                                    <option value="Pronta para entrega" {% if encomenda.status == "Pronta para entrega" %}selected{% endif %}>Pronta para entrega</option>
+                                    <option value="Entregue" {% if encomenda.status == "Entregue" %}selected{% endif %}>Entregue</option>
+                                </select>
+
+                                <button type="submit">Salvar status</button>
+                            </form>
                         </article>
                     {% endfor %}
                 </div>
