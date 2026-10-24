@@ -15,6 +15,18 @@ Reduzir a dependência de anotações em papel e mensagens dispersas, tornando o
 - Atualização do status dos pedidos.
 - Acompanhamento das etapas: recebida, em preparação, pronta para entrega e entregue.
 
+## Validação e testes
+
+O sistema realiza validações no cadastro de encomendas para impedir o envio de informações obrigatórias ausentes ou inválidas.
+
+O projeto também possui testes automatizados com `pytest` para verificar a criação das encomendas e o comportamento esperado das funcionalidades.
+
+Para executar os testes, utilize o comando:
+
+```bash
+python -m pytest -v
+```
+
 ## Tecnologias utilizadas
 
 - Python
