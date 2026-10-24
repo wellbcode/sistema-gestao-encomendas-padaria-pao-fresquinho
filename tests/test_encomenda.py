@@ -85,3 +85,45 @@ def test_nao_permite_cadastrar_encomenda_sem_cliente(
     assert resposta.status_code == 400
     assert b"Informe o nome do cliente." in resposta.data
     assert not arquivo_teste.exists()
+
+
+def test_cadastrar_encomenda_valida_e_salvar_no_arquivo(
+    tmp_path, monkeypatch
+):
+    import json
+
+    arquivo_teste = tmp_path / "encomendas.json"
+
+    monkeypatch.setattr(
+        armazenamento,
+        "ARQUIVO_ENCOMENDAS",
+        arquivo_teste
+    )
+
+    app = create_app()
+    app.config["TESTING"] = True
+
+    cliente = app.test_client()
+
+    resposta = cliente.post(
+        "/nova-encomenda",
+        data={
+            "cliente": "Maria Silva",
+            "telefone": "11999999999",
+            "produtos": "Bolo de chocolate",
+            "data": "2026-10-25",
+            "horario": "14:00",
+            "tipo": "Retirada",
+            "observacoes": "Sem granulado"
+        }
+    )
+
+    assert resposta.status_code == 302
+    assert arquivo_teste.exists()
+
+    with open(arquivo_teste, "r", encoding="utf-8") as arquivo:
+        encomendas = json.load(arquivo)
+
+    assert len(encomendas) == 1
+    assert encomendas[0]["cliente"] == "Maria Silva"
+    assert encomendas[0]["produtos"] == "Bolo de chocolate"
